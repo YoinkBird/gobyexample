@@ -52,7 +52,9 @@ func main() {
 	// value to `burstyLimiter`, up to its limit of 3.
 	go func() {
 		for t := range time.Tick(200 * time.Millisecond) {
-			burstyLimiter <- t
+			for i := 0; i < 3; i++ {
+				burstyLimiter <- t
+			}			
 		}
 	}()
 
